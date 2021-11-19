@@ -14,10 +14,7 @@ public class FileExecutor {
         String jsonPath = prop.getProperty("json.path");
         Boolean goOn = true;
         try{
-            File file = new File(jsonPath);
-            JSONParser parser = new JSONParser();
-            JSONObject jsonObject = (JSONObject) parser.parse(new FileReader(file.getAbsolutePath()));
-
+            JSONObject jsonObject = Utils.getJsonFromFile(jsonPath);
             jsonObject.putIfAbsent("iterazioni", 0);
 
             while(goOn) {
@@ -28,7 +25,7 @@ public class FileExecutor {
                 goOn = checkIfOk(jsonObject);
             }
 
-            salvaFile(jsonObject);
+            Utils.salvaFile(jsonObject,"filename_output.json");
 
         }
         catch (NullPointerException npe){
@@ -47,15 +44,6 @@ public class FileExecutor {
             ntopologyThread.start();
             ntopologyThread.join();
         } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void salvaFile(JSONObject jsonObject) {
-        try (FileWriter file = new FileWriter("filename_output.json")) {
-            file.write(jsonObject.toJSONString());
-            file.flush();
-        } catch (IOException e) {
             e.printStackTrace();
         }
     }

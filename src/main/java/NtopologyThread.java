@@ -14,6 +14,10 @@ public class NtopologyThread extends Thread{
 
         try {
             // TODO IMPLEMENTAZIONE CHIAMATA AD NTOPOLOGY
+            //Utils.salvaFile(jsonObject,"tempForNtopology.json");
+            //Process process = new ProcessBuilder("C:\\nTopology.exe","tempForNtopology.json").start();
+
+
 
             sleep(500);
             System.out.println("Chiamata esterna terminata");
