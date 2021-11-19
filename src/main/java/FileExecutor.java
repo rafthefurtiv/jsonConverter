@@ -42,7 +42,13 @@ public class FileExecutor {
     }
 
     private void ntopologyCall(JSONObject jsonObject) {
-        // TODO CHIAMARE PROGRAMMA ESTERNO
+        NtopologyThread ntopologyThread = new NtopologyThread(jsonObject);
+        try {
+            ntopologyThread.start();
+            ntopologyThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void salvaFile(JSONObject jsonObject) {
