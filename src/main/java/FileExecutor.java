@@ -1,4 +1,6 @@
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
 
 import model.Solido;
@@ -9,6 +11,10 @@ public class FileExecutor {
     public void execute(Properties prop){
         String jsonPath = prop.getProperty("json.path");
         String escapeCondition = prop.getProperty("escapeCondition");
+        String originArray = prop.getProperty("origin");
+        List<Double> widthArray = Arrays.stream(prop.getProperty("width").split(",")).toArray();
+        String heightArray = prop.getProperty("height");
+        String lengthArray = prop.getProperty("length");
         Boolean goOn = true;
 
         try{
