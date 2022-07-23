@@ -1,24 +1,24 @@
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Properties;
 
+import model.Solido;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 
 public class FileExecutor {
 
     public void execute(Properties prop){
         String jsonPath = prop.getProperty("json.path");
+        String escapeCondition = prop.getProperty("escapeCondition");
         Boolean goOn = true;
+
         try{
             JSONObject jsonObject = Utils.getJsonFromFile(jsonPath);
             jsonObject.putIfAbsent("iterazioni", 0);
+            Solido solido = new Solido(jsonObject);
 
             while(goOn) {
-                elaboraJson(jsonObject);
+
+                elaboraJson(solido);
 
                 ntopologyCall(jsonObject);
 
@@ -65,9 +65,11 @@ public class FileExecutor {
         return new Boolean(true);
     }
 
-    private void elaboraJson(JSONObject jsonObject) {
+    private void elaboraJson(Solido solido) {
         // TODO IMPLEMENTARE MODIFICHE AL JSON
-        System.out.println(jsonObject.toJSONString());
+
+
+        solido.toVideo();
     }
 
 

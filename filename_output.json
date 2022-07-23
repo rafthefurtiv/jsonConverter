@@ -1,1 +1,1 @@
-{"descrizione":"SODIO FLUORURO","idATC":5,"codiceATC":"A01AA01","iterazioni":10}
+{"inputs":[{"name":"Origin","description":"","units":"mm","type":"point","value":[5.0,0.0,0.0]},{"name":"Width","description":"","units":"mm","type":"real","value":12.0},{"name":"Height","description":"","units":"mm","type":"real","value":10.0},{"name":"Length","description":"","units":"mm","type":"real","value":9.0}],"description":"","title":"file","iterazioni":10}
