@@ -4,6 +4,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Solido {
 
@@ -56,6 +58,16 @@ public class Solido {
     }
 
     public void setLength(Double length) {
+        this.length = length;
+    }
+
+    public void trasform(String origin, Double width, Double height, Double length){
+        List<String> originString = Arrays.stream(origin.split(",")).collect(Collectors.toList());
+        this.origin[0] = new Double(originString.get(0));
+        this.origin[1] = new Double(originString.get(1));
+        this.origin[2] = new Double(originString.get(2));
+        this.width = width;
+        this.height = height;
         this.length = length;
     }
 
