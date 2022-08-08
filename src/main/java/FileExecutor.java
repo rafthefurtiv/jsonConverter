@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import model.Solido;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class FileExecutor {
@@ -36,7 +35,7 @@ public class FileExecutor {
                     primaEsec = false;
                 }
                 else {
-                    elaboraJson(solido, originArray, widthArray, heightArray, lengthArray);
+                    elaboraJson(jsonObject, solido, originArray, widthArray, heightArray, lengthArray);
                 }
                 i++;
                 ntopologyCall(jsonObject);
@@ -96,11 +95,12 @@ public class FileExecutor {
         return new Boolean(true);
     }
 
-    private void elaboraJson(Solido solido, List<String> origin, List<String> widthArray, List<String> heightArray, List<String> lengthArray) {
+    private void elaboraJson(JSONObject jsonObject, Solido solido, List<String> origin, List<String> widthArray, List<String> heightArray, List<String> lengthArray) {
         // TODO IMPLEMENTARE MODIFICHE AL JSON
 
         solido.trasform(origin.get(i), new Double(widthArray.get(i)), new Double(heightArray.get(i)), new Double(lengthArray.get(i)));
-
+        jsonObject = Utils.trasformaFile(jsonObject, solido);
+        Utils.salvaFile(jsonObject, "C://Users/Raffaele/Downloads/testPeppe/filename_output.json");
         solido.toVideo();
     }
 

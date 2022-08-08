@@ -1,3 +1,4 @@
+import model.Solido;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -9,6 +10,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Utils {
+
+    public static JSONObject trasformaFile(JSONObject jsonObject, Solido solido) {
+        ((JSONObject)((JSONArray) jsonObject.get("inputs")).get(0)).put("value", solido.getOrigin());
+        ((JSONObject)((JSONArray) jsonObject.get("inputs")).get(1)).put("value", solido.getWidth());
+        ((JSONObject)((JSONArray) jsonObject.get("inputs")).get(2)).put("value", solido.getHeight());
+        ((JSONObject)((JSONArray) jsonObject.get("inputs")).get(3)).put("value", solido.getLength());
+
+        return jsonObject;
+    }
 
     public static void salvaFile(JSONObject jsonObject, String name) {
         try (FileWriter file = new FileWriter(name)) {
