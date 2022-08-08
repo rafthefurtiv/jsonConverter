@@ -35,6 +35,7 @@ public class FileExecutor {
                     primaEsec = false;
                 }
                 else {
+                    // Viene modificato il solido e salvato sul file
                     elaboraJson(jsonObject, solido, originArray, widthArray, heightArray, lengthArray);
                 }
                 i++;
@@ -69,21 +70,6 @@ public class FileExecutor {
     private Boolean checkIfOk(JSONObject jsonObject) {
         // TODO IMPLEMENTARE CRITERIO DI STOP
 
-        jsonObject.putIfAbsent("iterazioni", 0);
-
-        Integer iterazioni = (Integer) jsonObject.get("iterazioni");
-        iterazioni++;
-        jsonObject.put("iterazioni", iterazioni);
-
-        iterazioni = (Integer) jsonObject.get("iterazioni");
-        if(iterazioni >= 10){
-            return new Boolean(false);
-        }
-        if(i >= 8){
-            return new Boolean(false);
-        }
-
-
         Utils.getJsonArrayFromFile(jsonOutPath);
         Double result = new Double(((JSONObject)((JSONObject)Utils.getJsonArrayFromFile(jsonOutPath).get(0)).get("value")).get("val").toString());
 
@@ -96,11 +82,9 @@ public class FileExecutor {
     }
 
     private void elaboraJson(JSONObject jsonObject, Solido solido, List<String> origin, List<String> widthArray, List<String> heightArray, List<String> lengthArray) {
-        // TODO IMPLEMENTARE MODIFICHE AL JSON
-
         solido.trasform(origin.get(i), new Double(widthArray.get(i)), new Double(heightArray.get(i)), new Double(lengthArray.get(i)));
         jsonObject = Utils.trasformaFile(jsonObject, solido);
-        Utils.salvaFile(jsonObject, "C://Users/Raffaele/Downloads/testPeppe/filename_output.json");
+        Utils.salvaFile(jsonObject, jsonPath);
         solido.toVideo();
     }
 

@@ -25,7 +25,7 @@ public class NtopologyThread extends Thread{
             }
 
 
-            sleep(500);
+            //sleep(500);
             System.out.println("Chiamata esterna terminata");
         } catch (InterruptedException e) {
             e.printStackTrace();
